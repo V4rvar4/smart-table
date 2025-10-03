@@ -11,14 +11,12 @@ export function initFiltering(elements) {
     }
 
     const applyFiltering = (query, state, action) => {
-        // код с обработкой очистки поля
-        if (action && action.name === 'clear' && action.target) {
-            const button = action.target;
-            const fieldName = button.dataset.field;
-
-            if (elements[fieldName]) {
-                elements[fieldName].value = '';
-                state[fieldName] = '';
+        // Обработка очистки поля
+        if (action && action.name === 'clear') {
+            const input = action.parentElement.querySelector('input');
+            if (input) {
+                input.value = '';
+                state[action.dataset.field] = '';
             }
         }
 
